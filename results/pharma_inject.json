@@ -1,0 +1,372 @@
+{
+  "protocol": "Test P-A (mechanism only). Public crystal 1UBQ chain A. Contact types are sequence-separation + C\u03b1 distance: backbone (|i-j|=1); short_range (2\u2264|i-j|\u22644, d<8\u00c5); long_range (|i-j|\u22655, d<8\u00c5, jumped); distal (|i-j|\u22655, 8\u2264d<12\u00c5). Random residue features; planted x_v\u2248R_r(t) x_u in 12-d. Additive jump on long_range only. C\u03b1 coordinates get thermal noise only; RMSD/RMSF/contacts are not rewritten by the plant. Success is (i) leftover unique max on the jumped type and (ii) leftover names that type at t* \u2014 relationship-specific information, not 'beat RMSD at RMSD's global task'. Not a native conformational transition, not allostery, not drug design. Gate 0 on native C\u03b1 endpoints is reported separately and is not a P-A pass condition.",
+  "pdb_id": "1UBQ",
+  "pdb_path": "/Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/data/pdb/1UBQ.pdb",
+  "n_residues": 76,
+  "n_steps": 12,
+  "t_star_index": 7,
+  "train_end": 4,
+  "type_definition": {
+    "backbone": "|i-j|=1",
+    "short_range": "2<=|i-j|<=4, C\u03b1<8.0\u00c5",
+    "long_range": "|i-j|>=5, C\u03b1<8.0\u00c5 (jumped)",
+    "distal": "|i-j|>=5, 8.0<=C\u03b1<12\u00c5"
+  },
+  "type_counts": {
+    "backbone": 75,
+    "short_range": 125,
+    "long_range": 126,
+    "distal": 456
+  },
+  "gate0_native_ca_linear_map": {
+    "backbone": {
+      "n": 75.0,
+      "native_rmse": 3.703725576400757,
+      "shuffle_rmse": 13.128083229064941,
+      "mean_pair_distance": 3.809285958997109,
+      "rmse_over_pair_distance": 0.9722886693903801,
+      "native_better_than_shuffle": true,
+      "usable_linear_pair_law": false
+    },
+    "short_range": {
+      "n": 125.0,
+      "native_rmse": 5.732321262359619,
+      "shuffle_rmse": 11.869384765625,
+      "mean_pair_distance": 6.106064813835432,
+      "rmse_over_pair_distance": 0.9387914208462109,
+      "native_better_than_shuffle": true,
+      "usable_linear_pair_law": false
+    },
+    "long_range": {
+      "n": 126.0,
+      "native_rmse": 5.421142101287842,
+      "shuffle_rmse": 10.75351333618164,
+      "mean_pair_distance": 6.172364611145992,
+      "rmse_over_pair_distance": 0.8782925900875005,
+      "native_better_than_shuffle": true,
+      "usable_linear_pair_law": false
+    },
+    "distal": {
+      "n": 456.0,
+      "native_rmse": 8.306903839111328,
+      "shuffle_rmse": 10.922356605529785,
+      "mean_pair_distance": 10.24669040541142,
+      "rmse_over_pair_distance": 0.8106914047802535,
+      "native_better_than_shuffle": true,
+      "usable_linear_pair_law": false
+    }
+  },
+  "gate0_any_usable_linear_pair_law": false,
+  "delta_itglls": {
+    "backbone": [
+      0.0,
+      0.1417856365442276,
+      0.1330810785293579,
+      0.121973916888237,
+      0.13942526280879974,
+      0.1329246163368225,
+      0.13195793330669403,
+      0.13233324885368347,
+      0.13796254992485046,
+      0.14417259395122528,
+      0.12963458895683289,
+      0.12595340609550476
+    ],
+    "short_range": [
+      0.0,
+      0.1243475154042244,
+      0.1156386286020279,
+      0.11612436920404434,
+      0.10647694766521454,
+      0.10551156103610992,
+      0.12400316447019577,
+      0.10657288134098053,
+      0.12300967425107956,
+      0.10927224904298782,
+      0.11832694709300995,
+      0.11504404246807098
+    ],
+    "long_range": [
+      0.0,
+      0.1289302557706833,
+      0.13826404511928558,
+      0.13460874557495117,
+      0.12538538873195648,
+      0.1369289606809616,
+      0.12381887435913086,
+      0.7972342371940613,
+      0.11784324049949646,
+      0.13351182639598846,
+      0.151463121175766,
+      0.14413709938526154
+    ],
+    "distal": [
+      0.0,
+      0.07959155738353729,
+      0.07850729674100876,
+      0.08475683629512787,
+      0.07668522745370865,
+      0.08311769366264343,
+      0.07945479452610016,
+      0.07916790246963501,
+      0.08519235253334045,
+      0.07790718972682953,
+      0.07844533026218414,
+      0.07885009795427322
+    ]
+  },
+  "delta_true_R": {
+    "backbone": [
+      0.0,
+      0.059994686394929886,
+      0.05999468266963959,
+      0.059994690120220184,
+      0.05999468266963959,
+      0.05999468266963959,
+      0.059994667768478394,
+      0.059994667768478394,
+      0.05999467149376869,
+      0.05999467894434929,
+      0.05999467149376869,
+      0.059994664043188095
+    ],
+    "short_range": [
+      0.0,
+      0.05999605730175972,
+      0.05999606102705002,
+      0.05999606102705002,
+      0.05999605730175972,
+      0.05999606475234032,
+      0.05999605730175972,
+      0.05999606475234032,
+      0.05999606475234032,
+      0.05999604985117912,
+      0.059996046125888824,
+      0.05999607965350151
+    ],
+    "long_range": [
+      0.0,
+      0.05999535694718361,
+      0.059995345771312714,
+      0.059995345771312714,
+      0.059995342046022415,
+      0.05999533832073212,
+      0.05999533832073212,
+      0.7956675887107849,
+      0.0610632486641407,
+      0.0610632449388504,
+      0.0610632449388504,
+      0.061063241213560104
+    ],
+    "distal": [
+      0.0,
+      0.059995587915182114,
+      0.05999559536576271,
+      0.05999559164047241,
+      0.05999559536576271,
+      0.05999559536576271,
+      0.059995606541633606,
+      0.05999559536576271,
+      0.05999560281634331,
+      0.059995584189891815,
+      0.0599956177175045,
+      0.05999559909105301
+    ]
+  },
+  "delta_baselines": {
+    "ca_rmsd": [
+      0.0,
+      0.12124701253202375,
+      0.002967752516269684,
+      0.004625998437404633,
+      0.002541467547416687,
+      0.003279469907283783,
+      0.0030958130955696106,
+      0.0021319910883903503,
+      0.0001819133758544922,
+      0.0027527883648872375,
+      0.001976609230041504,
+      0.002929694950580597
+    ],
+    "rmsf": [
+      0.0,
+      0.032266322523355484,
+      0.0074707940220832825,
+      0.00011763721704483032,
+      0.0011715330183506012,
+      0.0036018937826156616,
+      0.0022988729178905487,
+      0.001561388373374939,
+      0.0027066990733146667,
+      0.0004154779016971588,
+      0.00024996697902679443,
+      0.001666329801082611
+    ],
+    "contact_count": [
+      0.0,
+      1.0,
+      3.0,
+      4.0,
+      4.0,
+      3.0,
+      0.0,
+      2.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "new_contact": [
+      0.0,
+      0.006134969325153374,
+      0.0030959752321981426,
+      0.01529051987767584,
+      0.006191950464396285,
+      0.015337423312883436,
+      0.009202453987730062,
+      0.006172839506172839,
+      0.012307692307692308,
+      0.009230769230769232,
+      0.009230769230769232,
+      0.006134969325153374
+    ],
+    "residue_motion": [
+      0.0,
+      0.11177381873130798,
+      0.11930256336927414,
+      0.10616839677095413,
+      0.12192509323358536,
+      0.1234622374176979,
+      0.10630633682012558,
+      0.1163385808467865,
+      0.1225242093205452,
+      0.1064455509185791,
+      0.12014302611351013,
+      0.11336443573236465
+    ]
+  },
+  "break_itglls": {
+    "backbone": {
+      "delta_at_tstar": 0.13233324885368347,
+      "mean_rest_eval": 0.1337676147619883,
+      "z_vs_eval": -0.24362012975630376,
+      "rank": 4,
+      "n_eval": 7,
+      "rank_p": 0.5714285714285714,
+      "unique_max": false
+    },
+    "short_range": {
+      "delta_at_tstar": 0.10657288134098053,
+      "mean_rest_eval": 0.11586127306024234,
+      "z_vs_eval": -1.3728102211314934,
+      "rank": 6,
+      "n_eval": 7,
+      "rank_p": 0.8571428571428571,
+      "unique_max": false
+    },
+    "long_range": {
+      "delta_at_tstar": 0.7972342371940613,
+      "mean_rest_eval": 0.1346171870827675,
+      "z_vs_eval": 58.15449471413367,
+      "rank": 1,
+      "n_eval": 7,
+      "rank_p": 0.14285714285714285,
+      "unique_max": true
+    },
+    "distal": {
+      "delta_at_tstar": 0.07916790246963501,
+      "mean_rest_eval": 0.08049457644422849,
+      "z_vs_eval": -0.49198198596826687,
+      "rank": 4,
+      "n_eval": 7,
+      "rank_p": 0.5714285714285714,
+      "unique_max": false
+    }
+  },
+  "break_baselines": {
+    "ca_rmsd": {
+      "delta_at_tstar": 0.0021319910883903503,
+      "mean_rest_eval": 0.0023693814873695374,
+      "z_vs_eval": -0.2237089453527924,
+      "rank": 5,
+      "n_eval": 7,
+      "rank_p": 0.7142857142857143,
+      "unique_max": false
+    },
+    "rmsf": {
+      "delta_at_tstar": 0.001561388373374939,
+      "mean_rest_eval": 0.0018232067426045735,
+      "z_vs_eval": -0.21802957204541384,
+      "rank": 5,
+      "n_eval": 7,
+      "rank_p": 0.7142857142857143,
+      "unique_max": false
+    },
+    "contact_count": {
+      "delta_at_tstar": 2.0,
+      "mean_rest_eval": 0.8333333333333334,
+      "z_vs_eval": 1.09321632297634,
+      "rank": 2,
+      "n_eval": 7,
+      "rank_p": 0.2857142857142857,
+      "unique_max": false
+    },
+    "new_contact": {
+      "delta_at_tstar": 0.006172839506172839,
+      "mean_rest_eval": 0.01024067956583294,
+      "z_vs_eval": -1.4059911296969032,
+      "rank": 6,
+      "n_eval": 7,
+      "rank_p": 0.8571428571428571,
+      "unique_max": false
+    },
+    "residue_motion": {
+      "delta_at_tstar": 0.1163385808467865,
+      "mean_rest_eval": 0.1153742993871371,
+      "z_vs_eval": 0.13518829110970065,
+      "rank": 4,
+      "n_eval": 7,
+      "rank_p": 0.5714285714285714,
+      "unique_max": false
+    }
+  },
+  "localization": {
+    "argmax_type_at_tstar": "long_range",
+    "values_at_tstar": {
+      "backbone": 0.13233324885368347,
+      "short_range": 0.10657288134098053,
+      "long_range": 0.7972342371940613,
+      "distal": 0.07916790246963501
+    },
+    "identifies_affected_type": true
+  },
+  "type_selective_ratio_itglls": 7.519327156475012,
+  "post_inject_auc_frozen_pre": {
+    "backbone": {
+      "itglls_frozen_pre": 1.0
+    },
+    "short_range": {
+      "itglls_frozen_pre": 1.0
+    },
+    "long_range": {
+      "itglls_frozen_pre": 1.0
+    },
+    "distal": {
+      "itglls_frozen_pre": 1.0
+    }
+  },
+  "success": {
+    "itglls_unique_max_at_tstar": true,
+    "itglls_ratio_ge_3": true,
+    "identifies_affected_type": true,
+    "ca_rmsd_not_unique_max": true,
+    "rmsf_not_unique_max": true,
+    "contact_count_not_unique_max": true,
+    "new_contact_not_unique_max": true,
+    "residue_motion_not_unique_max": true,
+    "affected_auc_ge_0.80": true,
+    "all": true
+  },
+  "plot": "/Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/pharma_inject_delta.png",
+  "non_claim": "Does not show a real ligand- or mutant-induced transition (P-B), does not show drug-discovery utility (P-C). Native C\u03b1 endpoints are not a usable shared linear pair law (Gate 0); P-A therefore plants a synthetic subspace, same as the IBM inject."
+}

@@ -1,0 +1,131 @@
+{
+  "summary": {
+    "mean_delta_post": 0.08517491825991456,
+    "win_count": 12,
+    "total_settings": 12,
+    "train_timesteps": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "test_timesteps": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  "results": [
+    {
+      "noise_config": "clean",
+      "drift_scenario": "slow_smooth",
+      "static_pre": 0.7330931944444444,
+      "static_post": 0.5259678819444444,
+      "v35_pre": 0.9883622222222221,
+      "v35_post": 0.9879473958333334,
+      "delta_post": 0.4619795138888889
+    },
+    {
+      "noise_config": "clean",
+      "drift_scenario": "fast_smooth",
+      "static_pre": 0.8019879166666666,
+      "static_post": 0.5831224305555555,
+      "v35_pre": 0.9800783333333334,
+      "v35_post": 0.8913949999999999,
+      "delta_post": 0.3082725694444445
+    },
+    {
+      "noise_config": "clean",
+      "drift_scenario": "single_jump",
+      "static_pre": 0.79284046875,
+      "static_post": 0.5304884722222222,
+      "v35_pre": 0.9875536805555555,
+      "v35_post": 0.6512602777777777,
+      "delta_post": 0.12077180555555556
+    },
+    {
+      "noise_config": "clean",
+      "drift_scenario": "multi_jump",
+      "static_pre": 0.7709372048611111,
+      "static_post": 0.5021209895833334,
+      "v35_pre": 0.9646953298611111,
+      "v35_post": 0.5441391666666666,
+      "delta_post": 0.04201817708333322
+    },
+    {
+      "noise_config": "moderate",
+      "drift_scenario": "slow_smooth",
+      "static_pre": 0.6641554755441615,
+      "static_post": 0.5241345003347986,
+      "v35_pre": 0.7087709349747543,
+      "v35_post": 0.5623948612832701,
+      "delta_post": 0.03826036094847152
+    },
+    {
+      "noise_config": "moderate",
+      "drift_scenario": "fast_smooth",
+      "static_pre": 0.668940710284644,
+      "static_post": 0.527640460280086,
+      "v35_pre": 0.7050927031619405,
+      "v35_post": 0.5546275903504142,
+      "delta_post": 0.026987130070328158
+    },
+    {
+      "noise_config": "moderate",
+      "drift_scenario": "single_jump",
+      "static_pre": 0.6541990945349309,
+      "static_post": 0.49944188060425637,
+      "v35_pre": 0.7092121025167287,
+      "v35_post": 0.5051283480445875,
+      "delta_post": 0.005686467440331133
+    },
+    {
+      "noise_config": "moderate",
+      "drift_scenario": "multi_jump",
+      "static_pre": 0.6089583397173035,
+      "static_post": 0.4972317071491297,
+      "v35_pre": 0.6886647496617284,
+      "v35_post": 0.5003925347912572,
+      "delta_post": 0.0031608276421275505
+    },
+    {
+      "noise_config": "extreme",
+      "drift_scenario": "slow_smooth",
+      "static_pre": 0.5736406958034194,
+      "static_post": 0.49724668414163486,
+      "v35_pre": 0.6188083822496203,
+      "v35_post": 0.506527717744573,
+      "delta_post": 0.009281033602938082
+    },
+    {
+      "noise_config": "extreme",
+      "drift_scenario": "fast_smooth",
+      "static_pre": 0.5774613243545549,
+      "static_post": 0.5026822668706101,
+      "v35_pre": 0.6216297710470922,
+      "v35_post": 0.5032165734276737,
+      "delta_post": 0.0005343065570635464
+    },
+    {
+      "noise_config": "extreme",
+      "drift_scenario": "single_jump",
+      "static_pre": 0.5733760665316139,
+      "static_post": 0.5007118497050745,
+      "v35_pre": 0.6189892068663555,
+      "v35_post": 0.502893774971408,
+      "delta_post": 0.0021819252663334288
+    },
+    {
+      "noise_config": "extreme",
+      "drift_scenario": "multi_jump",
+      "static_pre": 0.5565391711429524,
+      "static_post": 0.4985167546581213,
+      "v35_pre": 0.6190589018860477,
+      "v35_post": 0.5014816562772807,
+      "delta_post": 0.00296490161915941
+    }
+  ]
+}

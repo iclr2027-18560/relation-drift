@@ -1,0 +1,243 @@
+{
+  "protocol": "MathOverflow SNAP (Paranjape et al.). Typed temporal edges a2q/c2q/c2a. Gate 0: lagged monthly activity, no plant. Inject: random user features, planted x_v\u2248R_r(t) x_u in 12-d, additive jump on c2a only. Counterparties unchanged. Not native friend-semantics drift.",
+  "months": [
+    "2010-01",
+    "2010-02",
+    "2010-03",
+    "2010-04",
+    "2010-05",
+    "2010-06",
+    "2010-07",
+    "2010-08",
+    "2010-09",
+    "2010-10",
+    "2010-11",
+    "2010-12"
+  ],
+  "t_star_month": "2010-08",
+  "t_star_index": 7,
+  "train_end": 5,
+  "n_users": 4903,
+  "type_counts": {
+    "a2q": 24799,
+    "c2q": 35044,
+    "c2a": 46431
+  },
+  "gate0": {
+    "stalk": "lagged monthly log1p in/out degree and per-type send/receive counts",
+    "pass_rule": "held-out RMSE < 0.25 dest RMS and < 0.50 destination shuffle",
+    "cells": {
+      "a2q": {
+        "n": 12236,
+        "too_few": false,
+        "rmse": 3.25054931640625,
+        "rmse_over_dest_rms": 0.9797736223370894,
+        "rmse_over_shuffle": 0.9907041379384985,
+        "pass_dest": false,
+        "pass_shuffle": false,
+        "passed": false
+      },
+      "c2q": {
+        "n": 19405,
+        "too_few": false,
+        "rmse": 2.922900915145874,
+        "rmse_over_dest_rms": 0.9017080338231027,
+        "rmse_over_shuffle": 0.87106962621771,
+        "pass_dest": false,
+        "pass_shuffle": false,
+        "passed": false
+      },
+      "c2a": {
+        "n": 23216,
+        "too_few": false,
+        "rmse": 3.3913731575012207,
+        "rmse_over_dest_rms": 0.6398218367183471,
+        "rmse_over_shuffle": 0.8465100397589329,
+        "pass_dest": false,
+        "pass_shuffle": false,
+        "passed": false
+      },
+      "pooled": {
+        "n": 54857,
+        "too_few": false,
+        "rmse": 3.4090676307678223,
+        "rmse_over_dest_rms": 0.8254643823557624,
+        "rmse_over_shuffle": 0.9029284108068789,
+        "pass_dest": false,
+        "pass_shuffle": false,
+        "passed": false
+      }
+    },
+    "passed": false,
+    "open_plant_native": false,
+    "note": "SNAP MathOverflow has no user features. This Gate 0 is lagged activity only. A fail means native activity is not a typed linear pair law. The inject below is a planted subspace on real topology, as in IBM HI-Small."
+  },
+  "delta_itglls": {
+    "a2q": [
+      0.0,
+      0.06439372152090073,
+      0.0624699704349041,
+      0.06547903269529343,
+      0.06308115273714066,
+      0.06619487702846527,
+      0.06296425312757492,
+      0.061735544353723526,
+      0.06420805305242538,
+      0.0622616671025753,
+      0.06488370895385742,
+      0.06075317785143852
+    ],
+    "c2q": [
+      0.0,
+      0.06535059213638306,
+      0.06220507621765137,
+      0.0609244741499424,
+      0.0655769407749176,
+      0.061713043600320816,
+      0.063845694065094,
+      0.061880361288785934,
+      0.06292150914669037,
+      0.06262564659118652,
+      0.06187931448221207,
+      0.063565194606781
+    ],
+    "c2a": [
+      0.0,
+      0.06257311254739761,
+      0.061319854110479355,
+      0.06287048012018204,
+      0.06348486989736557,
+      0.06193207576870918,
+      0.06041926145553589,
+      0.8016949892044067,
+      0.06600624322891235,
+      0.06155124679207802,
+      0.06368716061115265,
+      0.0649273544549942
+    ]
+  },
+  "delta_baselines": {
+    "interaction_volume": [
+      0.0,
+      94.0,
+      349.0,
+      297.0,
+      381.0,
+      1062.0,
+      903.0,
+      2113.0,
+      207.0,
+      987.0,
+      394.0,
+      1149.0
+    ],
+    "user_total": [
+      0.0,
+      6.278836509528586,
+      5.747302158273381,
+      5.618365627632688,
+      5.665873015873016,
+      5.370955605718585,
+      5.906535488404779,
+      5.8638211382113825,
+      5.09520639147803,
+      5.0,
+      4.603115264797508,
+      4.677440633245382
+    ],
+    "new_pair": [
+      0.0,
+      0.27998048066365744,
+      0.008742474578939397,
+      0.02067616532999894,
+      0.02551787941008199,
+      0.034367224297469856,
+      0.004380419516677558,
+      0.003917809905082836,
+      0.016992311190685228,
+      0.004332203656260081,
+      0.02187943896355249,
+      0.006793291331230411
+    ]
+  },
+  "break_itglls": {
+    "a2q": {
+      "delta_at_tstar": 0.061735544353723526,
+      "mean_rest_eval": 0.06301417201757431,
+      "z_vs_eval": -0.8781022922794072,
+      "rank": 5,
+      "n_eval": 6,
+      "rank_p": 0.8333333333333334,
+      "unique_max": false
+    },
+    "c2q": {
+      "delta_at_tstar": 0.061880361288785934,
+      "mean_rest_eval": 0.06296747177839279,
+      "z_vs_eval": -1.558860529585515,
+      "rank": 5,
+      "n_eval": 6,
+      "rank_p": 0.8333333333333334,
+      "unique_max": false
+    },
+    "c2a": {
+      "delta_at_tstar": 0.8016949892044067,
+      "mean_rest_eval": 0.06331825330853462,
+      "z_vs_eval": 356.2653209256941,
+      "rank": 1,
+      "n_eval": 6,
+      "rank_p": 0.16666666666666666,
+      "unique_max": true
+    }
+  },
+  "break_baselines": {
+    "interaction_volume": {
+      "delta_at_tstar": 2113.0,
+      "mean_rest_eval": 728.0,
+      "z_vs_eval": 3.818038559535941,
+      "rank": 1,
+      "n_eval": 6,
+      "rank_p": 0.16666666666666666,
+      "unique_max": true
+    },
+    "user_total": {
+      "delta_at_tstar": 5.8638211382113825,
+      "mean_rest_eval": 5.05645955558514,
+      "z_vs_eval": 1.7399916710445404,
+      "rank": 2,
+      "n_eval": 6,
+      "rank_p": 0.3333333333333333,
+      "unique_max": false
+    },
+    "new_pair": {
+      "delta_at_tstar": 0.003917809905082836,
+      "mean_rest_eval": 0.010875532931681153,
+      "z_vs_eval": -0.9645510112702609,
+      "rank": 6,
+      "n_eval": 6,
+      "rank_p": 1.0,
+      "unique_max": false
+    }
+  },
+  "type_selective_ratio_itglls": 12.970741670135322,
+  "post_inject_auc_frozen_pre": {
+    "a2q": {
+      "itglls_frozen_pre": 0.99354224761017
+    },
+    "c2q": {
+      "itglls_frozen_pre": 0.9417611336402038
+    },
+    "c2a": {
+      "itglls_frozen_pre": 0.7338990529680023
+    }
+  },
+  "success": {
+    "itglls_unique_max_at_tstar": true,
+    "itglls_ratio_ge_3": true,
+    "volume_not_unique_max": false,
+    "user_total_not_unique_max": true,
+    "new_pair_not_unique_max": true,
+    "affected_auc_ge_0.80": false,
+    "all": false
+  },
+  "plot": "/Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/mathoverflow_inject_delta.png"
+}

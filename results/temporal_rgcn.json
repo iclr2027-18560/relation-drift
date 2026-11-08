@@ -1,0 +1,219 @@
+{
+  "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+  "not_sthn": true,
+  "protocol": "leak-free t<0.5, clean noise, DualPath epochs/split",
+  "cells": [
+    {
+      "seed": 42,
+      "drift": "slow_smooth",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.8843878854166667,
+      "mean_gate": 0.1943696692585945,
+      "per_timestep_auc": {
+        "0": 0.884778298611111,
+        "1": 0.8839491319444446,
+        "2": 0.8841234375,
+        "3": 0.8843564236111111,
+        "4": 0.8842889756944444,
+        "5": 0.8842086805555555,
+        "6": 0.8841822916666666,
+        "7": 0.8846862847222222,
+        "8": 0.8842022569444444,
+        "9": 0.8845897569444444
+      }
+    },
+    {
+      "seed": 42,
+      "drift": "single_jump",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.6442023020833334,
+      "mean_gate": 0.1114298403263092,
+      "per_timestep_auc": {
+        "0": 0.8840491319444445,
+        "1": 0.8833352430555556,
+        "2": 0.8838692708333333,
+        "3": 0.8843237847222221,
+        "4": 0.8842567708333333,
+        "5": 0.6456116319444445,
+        "6": 0.6450982638888889,
+        "7": 0.6439260416666667,
+        "8": 0.6436622395833335,
+        "9": 0.6437225694444445
+      }
+    },
+    {
+      "seed": 43,
+      "drift": "slow_smooth",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.8715199479166668,
+      "mean_gate": 0.17292632758617402,
+      "per_timestep_auc": {
+        "0": 0.8716248263888889,
+        "1": 0.8720125,
+        "2": 0.8716461805555555,
+        "3": 0.8716824652777777,
+        "4": 0.8719534722222222,
+        "5": 0.871462326388889,
+        "6": 0.8714868055555555,
+        "7": 0.871635763888889,
+        "8": 0.8713894097222223,
+        "9": 0.8716480902777779
+      }
+    },
+    {
+      "seed": 43,
+      "drift": "single_jump",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.4812428020833333,
+      "mean_gate": 0.07553789467650596,
+      "per_timestep_auc": {
+        "0": 0.8757340277777779,
+        "1": 0.8761763888888889,
+        "2": 0.8757873263888888,
+        "3": 0.8759828125,
+        "4": 0.8762678819444445,
+        "5": 0.48222265625000005,
+        "6": 0.4830924479166666,
+        "7": 0.4810111979166667,
+        "8": 0.47956293402777783,
+        "9": 0.4803941840277778
+      }
+    },
+    {
+      "seed": 44,
+      "drift": "slow_smooth",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.8698719409722223,
+      "mean_gate": 0.20925198644399642,
+      "per_timestep_auc": {
+        "0": 0.8703712673611113,
+        "1": 0.8706386284722222,
+        "2": 0.8704467881944444,
+        "3": 0.8702330729166666,
+        "4": 0.8702582465277778,
+        "5": 0.8697651041666666,
+        "6": 0.8697347222222221,
+        "7": 0.8697849826388888,
+        "8": 0.8701433159722222,
+        "9": 0.8699249131944444
+      }
+    },
+    {
+      "seed": 44,
+      "drift": "single_jump",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.5941975590277778,
+      "mean_gate": 0.1684472881257534,
+      "per_timestep_auc": {
+        "0": 0.87013125,
+        "1": 0.8703293402777776,
+        "2": 0.8697006944444444,
+        "3": 0.8702247395833334,
+        "4": 0.8704220486111112,
+        "5": 0.5940938368055556,
+        "6": 0.5945280381944443,
+        "7": 0.5946471354166667,
+        "8": 0.5944387152777778,
+        "9": 0.5944792534722223
+      }
+    },
+    {
+      "seed": 45,
+      "drift": "slow_smooth",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.8781497708333335,
+      "mean_gate": 0.15370729565620422,
+      "per_timestep_auc": {
+        "0": 0.8785657118055555,
+        "1": 0.8785802951388889,
+        "2": 0.8784635416666666,
+        "3": 0.8785532986111111,
+        "4": 0.8782598090277778,
+        "5": 0.8783740451388888,
+        "6": 0.8782608506944446,
+        "7": 0.8778777777777776,
+        "8": 0.8783455729166668,
+        "9": 0.8779973090277778
+      }
+    },
+    {
+      "seed": 45,
+      "drift": "single_jump",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.6452814131944444,
+      "mean_gate": 0.09379494190216064,
+      "per_timestep_auc": {
+        "0": 0.8808631944444445,
+        "1": 0.8802705729166668,
+        "2": 0.8796993055555554,
+        "3": 0.8798018229166666,
+        "4": 0.879414670138889,
+        "5": 0.6490684027777778,
+        "6": 0.6471370659722222,
+        "7": 0.6475616319444445,
+        "8": 0.6471147569444444,
+        "9": 0.6467174479166667
+      }
+    },
+    {
+      "seed": 46,
+      "drift": "slow_smooth",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.890955638888889,
+      "mean_gate": 0.18153139501810073,
+      "per_timestep_auc": {
+        "0": 0.8920425347222221,
+        "1": 0.8913221354166667,
+        "2": 0.8913960937500001,
+        "3": 0.8913966145833334,
+        "4": 0.891204079861111,
+        "5": 0.8909401041666668,
+        "6": 0.8909586805555557,
+        "7": 0.8911200520833333,
+        "8": 0.8910696180555554,
+        "9": 0.8906904513888889
+      }
+    },
+    {
+      "seed": 46,
+      "drift": "single_jump",
+      "model": "temporal_rgcn",
+      "implementation": "temporal R-GCN control: per-relation mean aggregation + GRU (not STHN; snapshot edge-anomaly protocol)",
+      "post_auc": 0.5957506875,
+      "mean_gate": 0.1451850488781929,
+      "per_timestep_auc": {
+        "0": 0.8883635416666668,
+        "1": 0.8879945312499998,
+        "2": 0.8880031250000001,
+        "3": 0.8879947048611111,
+        "4": 0.8877866319444444,
+        "5": 0.5956634548611112,
+        "6": 0.59556640625,
+        "7": 0.5957481770833333,
+        "8": 0.5957251736111111,
+        "9": 0.59607890625
+      }
+    }
+  ],
+  "summary": {
+    "slow_smooth": {
+      "mean": 0.8789770368055556,
+      "std": 0.0088311876945144,
+      "n": 5
+    },
+    "single_jump": {
+      "mean": 0.5921349527777778,
+      "std": 0.0668018564231011,
+      "n": 5
+    }
+  }
+}

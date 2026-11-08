@@ -1,0 +1,88 @@
+{
+  "protocol": "Test P-B. E. coli adenylate kinase apo 4AKE vs holo 1AKE (Ap5A). Identifying object is per-contact relative pose of residue j in sender i's local backbone frame, apo vs holo \u2014 not a typed shared map R_r. No whole-protein superposition is used in leftover. Pre-registered regions: NMP 30\u201359, LID 122\u2013159, CORE 1\u201329/60\u2013121/160\u2013214; hinge band junctions \u00b11. Termini (5 residues each end) and top B-factor quantile dropped. Success: leftover higher at hinges than at LID/NMP interiors, while global C\u03b1 displacement is larger in the swinging domains. Not drug design. Not a shared-type Gate 0 pass.",
+  "apo": "4AKE",
+  "holo": "1AKE",
+  "n_shared_residues": 214,
+  "n_contacts": 636,
+  "n_contacts_kept": 502,
+  "n_dropped_termini": 10,
+  "n_dropped_high_b": 22,
+  "pre_registered": {
+    "core": [
+      [
+        1,
+        29
+      ],
+      [
+        60,
+        121
+      ],
+      [
+        160,
+        214
+      ]
+    ],
+    "nmp": [
+      30,
+      59
+    ],
+    "lid": [
+      122,
+      159
+    ],
+    "hinge": [
+      28,
+      29,
+      30,
+      31,
+      58,
+      59,
+      60,
+      61,
+      120,
+      121,
+      122,
+      123,
+      158,
+      159,
+      160,
+      161
+    ]
+  },
+  "by_region": {
+    "hinge": {
+      "n": 16.0,
+      "leftover_mean": 1.3193454217350868,
+      "global_disp_mean": 4.651569438723879,
+      "core_aligned_disp_mean": 5.104619787583211
+    },
+    "lid_interior": {
+      "n": 18.0,
+      "leftover_mean": 0.6357132240716673,
+      "global_disp_mean": 10.492560889966953,
+      "core_aligned_disp_mean": 14.585049151875674
+    },
+    "nmp_interior": {
+      "n": 24.0,
+      "leftover_mean": 1.649689452743772,
+      "global_disp_mean": 10.779133515819666,
+      "core_aligned_disp_mean": 10.920743950477844
+    },
+    "core_interior": {
+      "n": 124.0,
+      "leftover_mean": 0.7788120305590515,
+      "global_disp_mean": 3.4706538312948827,
+      "core_aligned_disp_mean": 1.5123035721414484
+    }
+  },
+  "spearman_leftover_vs_global_disp": 0.21066633755701777,
+  "success": {
+    "hinge_leftover_gt_lid_interior": true,
+    "hinge_leftover_gt_nmp_interior": false,
+    "lid_global_disp_gt_hinge": true,
+    "lid_interior_low_leftover_vs_its_global_disp": true,
+    "all": false
+  },
+  "plot": "/Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/pharma_pb_adk.png",
+  "non_claim": "Does not restore typed shared R_r. Does not claim a medicine. Hinge labels are literature junctions, not leftover-selected."
+}

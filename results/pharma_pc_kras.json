@@ -1,0 +1,102 @@
+{
+  "protocol": "Test P-C (application branch, not the paper leftover). Human KRAS G12C: GDP-bound 4L8G vs AMG 510 complex 6OIM. Identifying object is per-contact relative pose in the sender local frame (apo vs holo). Pre-registered: Switch I 25\u201340, Switch II 58\u201372, cryptic subpocket H95/Y96/Q99, SII-P set {12,58,59,60,61,64,68,69,72,92,95,96,99}. Termini and high B-factor dropped. No whole-protein superposition in leftover. Win: leftover marks SI\u2013SII / pocket interactions more than CORE, and is not the same ranking as global C\u03b1 displacement or |\u0394distance|. Not hinge-highest. Not 'predicts which drugs work'. Not typed shared R_r (Gate 0 abandoned for this branch).",
+  "apo": "4L8G",
+  "holo": "6OIM",
+  "n_shared_residues": 154,
+  "n_contacts": 462,
+  "n_contacts_kept": 388,
+  "n_dropped_termini": 10,
+  "n_dropped_high_b_nonfunctional": 13,
+  "n_high_b_kept_functional": 3,
+  "pre_registered": {
+    "switch_i": [
+      25,
+      40
+    ],
+    "switch_ii": [
+      58,
+      72
+    ],
+    "cryptic_subpocket": [
+      95,
+      96,
+      99
+    ],
+    "pocket": [
+      12,
+      58,
+      59,
+      60,
+      61,
+      64,
+      68,
+      69,
+      72,
+      92,
+      95,
+      96,
+      99
+    ]
+  },
+  "pair_leftover_by_group": {
+    "si_sii": 0.3537497090790048,
+    "pocket": 0.41105528399450375,
+    "core": 0.25028445013479683
+  },
+  "pair_n_by_group": {
+    "si_sii": 7,
+    "pocket": 35,
+    "core": 265
+  },
+  "by_region": {
+    "pocket": {
+      "n": 8.0,
+      "leftover_mean": 0.42080350894533547,
+      "global_disp_mean": 0.6555810636064648,
+      "core_aligned_disp_mean": 0.6660582769049359,
+      "abs_distance_change_mean": 0.2645876088154371
+    },
+    "switch_i": {
+      "n": 15.0,
+      "leftover_mean": 0.5049049726009058,
+      "global_disp_mean": 0.7392110728200904,
+      "core_aligned_disp_mean": 0.8172083603682962,
+      "abs_distance_change_mean": 0.26179484038732126
+    },
+    "switch_ii": {
+      "n": 2.0,
+      "leftover_mean": 0.8962327936487829,
+      "global_disp_mean": 1.845783166540099,
+      "core_aligned_disp_mean": 1.8892111787748371,
+      "abs_distance_change_mean": 0.9013946278683139
+    },
+    "p_loop": {
+      "n": 7.0,
+      "leftover_mean": 0.21117192944749627,
+      "global_disp_mean": 0.23277597157446261,
+      "core_aligned_disp_mean": 0.3053174123765225,
+      "abs_distance_change_mean": 0.10539161968621466
+    },
+    "core": {
+      "n": 101.0,
+      "leftover_mean": 0.29864926672413317,
+      "global_disp_mean": 0.33046264048033064,
+      "core_aligned_disp_mean": 0.31397899381686656,
+      "abs_distance_change_mean": 0.17250871260670872
+    }
+  },
+  "leftover_pocket_over_core": 1.409022407994184,
+  "global_disp_pocket_over_core": 1.9838280740405978,
+  "spearman_leftover_vs_global_disp": 0.554029238632538,
+  "spearman_leftover_vs_distance_change": 0.7490996827210494,
+  "success": {
+    "si_sii_leftover_gt_core_pairs": true,
+    "pocket_leftover_gt_core_residues": true,
+    "leftover_not_same_rank_as_global_disp": true,
+    "leftover_not_same_rank_as_distance_change": false,
+    "leftover_enriches_pocket_more_than_global_disp": false,
+    "all": false
+  },
+  "plot": "/Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/pharma_pc_kras.png",
+  "non_claim": "Does not claim allostery detection as the paper result, does not rank ligands (P-D), does not restore Gate 0 typed maps."
+}

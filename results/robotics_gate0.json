@@ -1,0 +1,198 @@
+{
+  "protocol": "Gate 0 on public ForceFlow plug-insertion (xArm6, 6-axis wrist F/T). Pair law is wrench \u2248 A \u00b7 motion. Types are episode-baseline excess xyz force: free < 2.0 N, contact \u2265 2.0 N. Stalks: (i) commanded 6D delta pose, (ii) affine delta pose [\u0394x; 1], (iii) measured twist from consecutive poses, (iv) delta pose \u2192 delta wrench, (v) absolute pose (control). Linear map is fit on 70% of episodes and scored on 30% vs a destination shuffle (5 splits). Pass for the paper leftover if a contact cell on a motion stalk has held-out RMSE < 0.25\u00d7 wrench RMS and < 0.50\u00d7shuffle. Free-space is not enough to pass: near-zero force is expected to be stereotyped.",
+  "task": "plug",
+  "parquet_path": "/Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/data/forceflow/data/plug/train-00000-of-00001.parquet",
+  "n_frames": 50107,
+  "n_episodes": 100,
+  "type_counts": {
+    "free": 27763,
+    "contact": 22344
+  },
+  "contact_fraction": 0.4459257189614226,
+  "pass_rule": {
+    "linear": "episode-holdout RMSE < 0.25 * dest RMS AND < 0.50 * shuffle; pass requires contact on one of ['delta_pose', 'delta_pose_affine', 'measured_twist']",
+    "free_cannot_pass": true,
+    "abs_pose_is_control": true
+  },
+  "report": {
+    "delta_pose": {
+      "free": {
+        "n": 27763.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 0.7104154505334586,
+        "shuffle_rmse": 0.713489361226785,
+        "feature_rms": 0.37089820279638586,
+        "rmse_over_scale": 1.9153920002234668,
+        "native_over_shuffle": 0.9956917217545598,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 0.7334746535406833
+      },
+      "contact": {
+        "n": 22344.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 20.370657811632523,
+        "shuffle_rmse": 20.18323646159453,
+        "feature_rms": 10.55827328346604,
+        "rmse_over_scale": 1.9293550436445326,
+        "native_over_shuffle": 1.0092859908961889,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 20.327530816097426
+      }
+    },
+    "delta_pose_affine": {
+      "free": {
+        "n": 27763.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 7.0,
+        "dim_dst": 6.0,
+        "native_rmse": 0.583815706851008,
+        "shuffle_rmse": 0.6973654306122198,
+        "feature_rms": 0.37089820279638586,
+        "rmse_over_scale": 1.5740591419676109,
+        "native_over_shuffle": 0.8371732827915975,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 0.7334746535406833
+      },
+      "contact": {
+        "n": 22344.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 7.0,
+        "dim_dst": 6.0,
+        "native_rmse": 14.642885513705005,
+        "shuffle_rmse": 15.182154004775501,
+        "feature_rms": 10.55827328346604,
+        "rmse_over_scale": 1.3868636585335743,
+        "native_over_shuffle": 0.9644801066501584,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 20.327530816097426
+      }
+    },
+    "measured_twist": {
+      "free": {
+        "n": 27763.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 0.7061481437564695,
+        "shuffle_rmse": 0.7155776463595049,
+        "feature_rms": 0.37089820279638586,
+        "rmse_over_scale": 1.9038866687206024,
+        "native_over_shuffle": 0.9868225305094311,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 0.7334746535406833
+      },
+      "contact": {
+        "n": 22344.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 20.39828898493493,
+        "shuffle_rmse": 20.15964631495148,
+        "feature_rms": 10.55827328346604,
+        "rmse_over_scale": 1.9319720599464003,
+        "native_over_shuffle": 1.0118376417053736,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 20.327530816097426
+      }
+    },
+    "delta_pose_to_delta_wrench": {
+      "free": {
+        "n": 27763.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 0.3710130129638632,
+        "shuffle_rmse": 0.3694391100210955,
+        "feature_rms": 0.2246082792471083,
+        "rmse_over_scale": 1.6518225161045117,
+        "native_over_shuffle": 1.004260249930436,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 0.7334746535406833
+      },
+      "contact": {
+        "n": 22344.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 1.1829661077870768,
+        "shuffle_rmse": 1.2048117408642054,
+        "feature_rms": 1.2713629982639085,
+        "rmse_over_scale": 0.9304707698764705,
+        "native_over_shuffle": 0.9818680111288932,
+        "native_better_than_shuffle": false,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 20.327530816097426
+      }
+    },
+    "abs_pose": {
+      "free": {
+        "n": 27763.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 0.5427295697136503,
+        "shuffle_rmse": 0.694550855288715,
+        "feature_rms": 0.37089820279638586,
+        "rmse_over_scale": 1.463284441989048,
+        "native_over_shuffle": 0.7814108435415363,
+        "native_better_than_shuffle": true,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 0.7334746535406833
+      },
+      "contact": {
+        "n": 22344.0,
+        "n_episodes": 100.0,
+        "n_splits": 5.0,
+        "dim_src": 6.0,
+        "dim_dst": 6.0,
+        "native_rmse": 12.088320976646926,
+        "shuffle_rmse": 15.188913686275658,
+        "feature_rms": 10.55827328346604,
+        "rmse_over_scale": 1.1449145757173096,
+        "native_over_shuffle": 0.7958647488773108,
+        "native_better_than_shuffle": true,
+        "usable_linear_pair_law": false,
+        "too_few_pairs": false,
+        "mean_excess_force": 20.327530816097426
+      }
+    }
+  },
+  "verdict": {
+    "linear_pair_law_contact": false,
+    "linear_pair_law_free": false,
+    "abs_pose_contact_usable": false,
+    "passing_claim_cells": [],
+    "gate0_pass_for_paper_leftover": false
+  },
+  "plot": "/Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/robotics_gate0.png",
+  "non_claim": "A pass does not show a robot product, failure detection SOTA, or transfer of the banking typed-leftover theorem. A fail blocks P-A/P-B for this leftover on this stalk."
+}
