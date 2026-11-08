@@ -1,6 +1,6 @@
 # Learning Time-Varying Relational Constraints
 
-Code for the synthetic sheaf model, the pair estimators, and the dataset checks used in the paper.
+Code for the Elliptic++ anti-money-laundering run, the pair estimators, and the synthetic checks used in the paper.
 
 Run every command from this directory. Paths such as `data/` and `results/` are relative to the repository root.
 
@@ -30,6 +30,27 @@ pip install -r requirements.txt
 `requirements.txt` does not install PyTorch. On a GPU machine, install the CUDA build of PyTorch from the PyTorch site before `torch-geometric`.
 
 ## Paper runs
+
+### Elliptic++ (AML)
+
+Native illicit-transaction ranking. Train timesteps 1–34, test timesteps 35–49. The three CSVs are already in `data/elliptic/`.
+
+```bash
+python src/run/run_elliptic_benchmark.py --data_dir data/elliptic
+python experiments/run_elliptic_dynamic_baselines.py --models dual evolvegcn tgn
+```
+
+Outputs: `results/elliptic_v35_results.json` and `results/elliptic_dynamic_baselines.json`. Add `--quick` on the baseline script for 40 epochs.
+
+The planted-map check on the same transaction graph, which is not the native illicit-label task:
+
+```bash
+python experiments/run_elliptic_inject.py
+```
+
+Output: `results/elliptic_inject.json`.
+
+### Synthetic checks
 
 Synthetic Table 1 (seeds 42–46, clean noise, four drifts). This is a long run.
 
@@ -67,16 +88,7 @@ python experiments/run_jump_multiseed.py
 
 Output: `results/jump_multiseed_unsupervised.json`.
 
-Elliptic, train timesteps 1–34 and test timesteps 35–49. The three CSVs are already in `data/elliptic/`.
-
-```bash
-python src/run/run_elliptic_benchmark.py --data_dir data/elliptic
-python experiments/run_elliptic_dynamic_baselines.py --models dual evolvegcn tgn
-```
-
-Outputs: `results/elliptic_v35_results.json` and `results/elliptic_dynamic_baselines.json`. Add `--quick` for 40 epochs on the baseline script.
-
-Separate baseline scripts, if you want one model at a time:
+Separate synthetic baseline scripts, if you want one model at a time:
 
 ```bash
 python experiments/run_tgn_baseline.py
@@ -91,7 +103,6 @@ These read the files under `data/` and write JSON under `results/`.
 ```bash
 python experiments/run_kaggle_inject.py          # data/kaggle/HI-Small_Trans.csv
 python experiments/run_mathoverflow_inject.py    # data/mathoverflow/
-python experiments/run_elliptic_inject.py        # data/elliptic/
 python experiments/run_pharma_inject.py          # data/pdb/
 python experiments/run_procrustes_baseline.py
 python experiments/run_gld_residual_v35.py
