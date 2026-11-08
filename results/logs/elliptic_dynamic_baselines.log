@@ -1,0 +1,125 @@
+Loading features...
+  203769 txs × 165 feats (CSV cols=167)
+Loading edges...
+Loading classes...
+Building temporal snapshots...
+Loaded 49 timesteps: 34 train, 15 test
+Elliptic snapshots=49 first_t=1 train_end_idx=34 (exclusive) train_last_t=34 test_first_t=35
+
+=== DualPath (gated) ===
+      [dual] epoch   1/200 loss=6.2676
+      [dual] epoch  40/200 loss=0.1518
+      [dual] epoch  80/200 loss=0.1097
+      [dual] epoch 120/200 loss=0.0856
+      [dual] epoch 160/200 loss=0.0626
+      [dual] epoch 200/200 loss=0.0396
+  Saved /Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/elliptic_dynamic_baselines.json
+
+=== EvolveGCN-H ===
+    EvolveGCN-H parameters: 100,353 (~100.4K)
+      Epoch   1/200: loss=2.2032
+      Epoch  20/200: loss=0.0488
+      Epoch  40/200: loss=0.0171
+      Epoch  60/200: loss=0.0091
+      Epoch  80/200: loss=0.0081
+      Epoch 100/200: loss=0.0013
+      Epoch 120/200: loss=0.0233
+      Epoch 140/200: loss=0.0006
+      Epoch 160/200: loss=0.0068
+      Epoch 180/200: loss=0.0004
+      Epoch 200/200: loss=0.0001
+  Saved /Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/elliptic_dynamic_baselines.json
+
+=== TGN (unique node IDs per tx) ===
+    TGN parameters: 188,609 (~188.6K)
+    Events: 36624, nodes: 203769, msg_dim: 330
+      Epoch   1/200: loss=5.1918
+      Epoch  20/200: loss=0.1393
+      Epoch  40/200: loss=0.1042
+      Epoch  60/200: loss=0.0815
+      Epoch  80/200: loss=0.0623
+      Epoch 100/200: loss=0.0462
+      Epoch 120/200: loss=0.0348
+      Epoch 140/200: loss=0.0268
+      Epoch 160/200: loss=0.0206
+      Epoch 180/200: loss=0.0157
+      Epoch 200/200: loss=0.0119
+  Saved /Users/sumantapakira/Desktop/Projects/Misc/ML/Gaussian-Elimination/temporal-graph-financial-crime/results/elliptic_dynamic_baselines.json
+
+Done.
+{
+  "dualpath": {
+    "overall_auc": 0.8668949304940355,
+    "pre_regime_mean": 0.8649490693476876,
+    "post_regime_mean": 0.6780770838080026,
+    "degradation": 0.18687198553968498,
+    "per_test_timestep_auc": {
+      "35": 0.9692299006323397,
+      "36": 0.5,
+      "37": 0.8523830538393644,
+      "38": 0.9412259615384615,
+      "39": 0.9699521531100478,
+      "40": 0.8523809523809524,
+      "41": 0.9331413947536789,
+      "42": 0.9012791385266565,
+      "43": 0.8343532517398609,
+      "44": 0.3364548494983277,
+      "45": 0.9278810408921933,
+      "46": 0.5,
+      "47": 0.8290098648154914,
+      "48": 0.5,
+      "49": 0.8188405797101449
+    },
+    "mean_gate": 0.9788411977339764,
+    "epochs": 200
+  },
+  "evolvegcn_h": {
+    "overall_auc": 0.7226575954510412,
+    "pre_regime_mean": 0.7951334719720742,
+    "post_regime_mean": 0.5697391064219606,
+    "degradation": 0.2253943655501136,
+    "per_test_timestep_auc": {
+      "35": 0.8792908762420958,
+      "36": 0.5,
+      "37": 0.800198587819947,
+      "38": 0.877704326923077,
+      "39": 0.9466507177033493,
+      "40": 0.6822337662337663,
+      "41": 0.9912028150991683,
+      "42": 0.6837866857551897,
+      "43": 0.4994600431965443,
+      "44": 0.49899665551839467,
+      "45": 0.5,
+      "46": 0.5,
+      "47": 0.4993788819875776,
+      "48": 0.5,
+      "49": 0.9903381642512077
+    },
+    "epochs": 200,
+    "num_nodes": 7880
+  },
+  "tgn": {
+    "overall_auc": 0.8720202044083105,
+    "pre_regime_mean": 0.8484236582524471,
+    "post_regime_mean": 0.6697436628136874,
+    "degradation": 0.1786799954387598,
+    "per_test_timestep_auc": {
+      "35": 0.9441621499548329,
+      "36": 0.5,
+      "37": 0.8323036187113857,
+      "38": 0.9009615384615384,
+      "39": 0.9516746411483255,
+      "40": 0.8577142857142858,
+      "41": 0.8920345489443379,
+      "42": 0.9085384830848714,
+      "43": 0.8468922486201105,
+      "44": 0.29581939799331103,
+      "45": 0.787360594795539,
+      "46": 0.5,
+      "47": 0.9078918523931312,
+      "48": 0.5,
+      "49": 0.8502415458937198
+    },
+    "epochs": 200
+  }
+}
