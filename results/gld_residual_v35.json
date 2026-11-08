@@ -1,0 +1,315 @@
+{
+  "protocol": "Leak-free V3.5. Unlabeled IT-GLLS on raw pairs; log1p residual concatenated to the edge head. No jump labels.",
+  "results": [
+    {
+      "seed": 42,
+      "drift": "single_jump",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    },
+    {
+      "seed": 42,
+      "drift": "slow_smooth",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 0.9999999999999999,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    },
+    {
+      "seed": 43,
+      "drift": "single_jump",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 0.9999999999999999,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    },
+    {
+      "seed": 43,
+      "drift": "slow_smooth",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 0.9999999999999999,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 0.9999999999999999
+      }
+    },
+    {
+      "seed": 44,
+      "drift": "single_jump",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 0.9999999999999999,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    },
+    {
+      "seed": 44,
+      "drift": "slow_smooth",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 0.9999999999999999,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 0.9999999999999999,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 0.9999999999999999
+      }
+    },
+    {
+      "seed": 45,
+      "drift": "single_jump",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 0.9999999999999999,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 0.9999999999999999,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    },
+    {
+      "seed": 45,
+      "drift": "slow_smooth",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 0.9999999999999999,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 0.9999999999999999,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    },
+    {
+      "seed": 46,
+      "drift": "single_jump",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    },
+    {
+      "seed": 46,
+      "drift": "slow_smooth",
+      "residual_only_post_auc": 1.0,
+      "residual_only_per_timestep": {
+        "t_0": 1.0,
+        "t_1": 1.0,
+        "t_2": 1.0,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      },
+      "v35_residual_pre_auc": 1.0,
+      "v35_residual_post_auc": 1.0,
+      "per_timestep_auc": {
+        "t_0": 0.9999999999999999,
+        "t_1": 1.0,
+        "t_2": 0.9999999999999999,
+        "t_3": 1.0,
+        "t_4": 1.0,
+        "t_5": 1.0,
+        "t_6": 1.0,
+        "t_7": 1.0,
+        "t_8": 1.0,
+        "t_9": 1.0
+      }
+    }
+  ]
+}

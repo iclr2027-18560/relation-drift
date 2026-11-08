@@ -1,0 +1,189 @@
+{
+  "protocol": "AdK LID\u2013CORE and NMP\u2013CORE coupling on DIMS closed\u2192open paths (Seyler 2015; CORE-fitted). Closed = first 25% of each path, open = last 25%. X_j(t+1)\u2248A X_i(t) in 8-d PCA of COM-centered region C\u03b1. Gate 0 is time holdout on closed vs destination shuffle. Replicas: paths 1\u20135 vs 6\u201310. Incremental: frame-level closed vs open logistic AUC of [distance, RMSD, PC1] vs same plus closed-map residual.",
+  "data_note": "DIMS is importance-sampled transitions, not equilibrium apo vs holo MD.",
+  "n_paths": 10,
+  "n_ca": 214,
+  "pre_registered_pairs": [
+    "lid_core",
+    "nmp_core"
+  ],
+  "tau": 1,
+  "pca_dim": 8,
+  "basin_frac": 0.25,
+  "replicas": {
+    "paths_1_5": {
+      "lid_core": {
+        "gate0": {
+          "n": 122.0,
+          "n_hold": 37.0,
+          "native_rmse": 3.326152859810229,
+          "shuffle_rmse": 8.516008346831715,
+          "feature_rms": 2.659787684226342,
+          "rmse_over_scale": 1.2505332209543312,
+          "native_over_shuffle": 0.39057651476441857,
+          "gate0_pass": false
+        },
+        "D_frobenius": 2.066134569624871,
+        "coupling_vs_shuffle": {
+          "closed_rmse": 2.2466335761934504,
+          "shuffled_rmse": 6.610054147700504,
+          "D_to_shuffled_A": 3.490894122260795,
+          "D_apo_holo": 2.066134569624871,
+          "shuffle_distinguishes": true
+        },
+        "baselines": {
+          "mean_interregion_distance_closed": 22.635216005875264,
+          "mean_interregion_distance_open": 30.47943029215003,
+          "delta_distance": 7.844214286274767,
+          "mean_rmsd_dst_closed": 0.8833633000715225,
+          "mean_rmsd_dst_open": 1.6772766983067802,
+          "rmsf_dst_closed": 0.6400351935443686,
+          "rmsf_dst_open": 0.47442817455853514,
+          "dcc_com": -0.009618335251078594,
+          "mi_com_distance_vs_src_speed_closed": 0.03884973935214617
+        },
+        "incremental": {
+          "auc_distance_rmsd_pca": 1.0,
+          "auc_plus_coupling_residual": 1.0,
+          "delta_auc": 0.0,
+          "spearman_residual_vs_distance": 0.7057044554312314
+        }
+      },
+      "nmp_core": {
+        "gate0": {
+          "n": 122.0,
+          "n_hold": 37.0,
+          "native_rmse": 2.800454708761501,
+          "shuffle_rmse": 7.037751788609542,
+          "feature_rms": 1.975127462046744,
+          "rmse_over_scale": 1.417860245768394,
+          "native_over_shuffle": 0.3979189367397099,
+          "gate0_pass": false
+        },
+        "D_frobenius": 1.318915102802743,
+        "coupling_vs_shuffle": {
+          "closed_rmse": 1.4986425490387234,
+          "shuffled_rmse": 4.638836302143207,
+          "D_to_shuffled_A": 2.8616928357563185,
+          "D_apo_holo": 1.318915102802743,
+          "shuffle_distinguishes": true
+        },
+        "baselines": {
+          "mean_interregion_distance_closed": 18.57448408852966,
+          "mean_interregion_distance_open": 22.11383050699434,
+          "delta_distance": 3.5393464184646817,
+          "mean_rmsd_dst_closed": 0.8833633000715225,
+          "mean_rmsd_dst_open": 1.6772766983067802,
+          "rmsf_dst_closed": 0.6400351935443686,
+          "rmsf_dst_open": 0.47442817455853514,
+          "dcc_com": -0.04281648574490291,
+          "mi_com_distance_vs_src_speed_closed": 0.01656165127856975
+        },
+        "incremental": {
+          "auc_distance_rmsd_pca": 1.0,
+          "auc_plus_coupling_residual": 1.0,
+          "delta_auc": 0.0,
+          "spearman_residual_vs_distance": 0.629472675530443
+        }
+      }
+    },
+    "paths_6_10": {
+      "lid_core": {
+        "gate0": {
+          "n": 124.0,
+          "n_hold": 37.0,
+          "native_rmse": 3.105599044895616,
+          "shuffle_rmse": 8.171054957209911,
+          "feature_rms": 2.4461130292735564,
+          "rmse_over_scale": 1.2696057000350114,
+          "native_over_shuffle": 0.3800732048871268,
+          "gate0_pass": false
+        },
+        "D_frobenius": 1.6431059060048092,
+        "coupling_vs_shuffle": {
+          "closed_rmse": 2.1593161080252754,
+          "shuffled_rmse": 6.343329246067798,
+          "D_to_shuffled_A": 3.229816405441906,
+          "D_apo_holo": 1.6431059060048092,
+          "shuffle_distinguishes": true
+        },
+        "baselines": {
+          "mean_interregion_distance_closed": 22.59606504169545,
+          "mean_interregion_distance_open": 30.449450104684864,
+          "delta_distance": 7.853385062989414,
+          "mean_rmsd_dst_closed": 0.883954099430325,
+          "mean_rmsd_dst_open": 1.6937273697214534,
+          "rmsf_dst_closed": 0.6445205032412454,
+          "rmsf_dst_open": 0.5023721850935429,
+          "dcc_com": 0.08634855175002208,
+          "mi_com_distance_vs_src_speed_closed": 0.04427497770880749
+        },
+        "incremental": {
+          "auc_distance_rmsd_pca": 1.0,
+          "auc_plus_coupling_residual": 1.0,
+          "delta_auc": 0.0,
+          "spearman_residual_vs_distance": 0.7336384849834233
+        }
+      },
+      "nmp_core": {
+        "gate0": {
+          "n": 124.0,
+          "n_hold": 37.0,
+          "native_rmse": 1.6522221609874195,
+          "shuffle_rmse": 5.384044750059896,
+          "feature_rms": 1.4328605984737317,
+          "rmse_over_scale": 1.1530934431076891,
+          "native_over_shuffle": 0.3068737794144521,
+          "gate0_pass": false
+        },
+        "D_frobenius": 1.5287476327145317,
+        "coupling_vs_shuffle": {
+          "closed_rmse": 1.5033612124544165,
+          "shuffled_rmse": 4.5195388533244145,
+          "D_to_shuffled_A": 2.9590414352018652,
+          "D_apo_holo": 1.5287476327145317,
+          "shuffle_distinguishes": true
+        },
+        "baselines": {
+          "mean_interregion_distance_closed": 18.42037553378586,
+          "mean_interregion_distance_open": 22.100229622933313,
+          "delta_distance": 3.679854089147451,
+          "mean_rmsd_dst_closed": 0.883954099430325,
+          "mean_rmsd_dst_open": 1.6937273697214534,
+          "rmsf_dst_closed": 0.6445205032412454,
+          "rmsf_dst_open": 0.5023721850935429,
+          "dcc_com": 0.10619273630386009,
+          "mi_com_distance_vs_src_speed_closed": 0.00897049809701372
+        },
+        "incremental": {
+          "auc_distance_rmsd_pca": 1.0,
+          "auc_plus_coupling_residual": 1.0,
+          "delta_auc": 0.0,
+          "spearman_residual_vs_distance": 0.7053998939469515
+        }
+      }
+    }
+  },
+  "go_no_go": {
+    "lid_core": {
+      "A_operator_changes": true,
+      "B_reproducible_across_path_groups": true,
+      "C_incremental_beyond_motion": false,
+      "gate0_closed": false,
+      "shuffle_control": true,
+      "proceed": false
+    },
+    "nmp_core": {
+      "A_operator_changes": true,
+      "B_reproducible_across_path_groups": true,
+      "C_incremental_beyond_motion": false,
+      "gate0_closed": false,
+      "shuffle_control": true,
+      "proceed": false
+    }
+  },
+  "verdict": {
+    "any_pair_proceed": false,
+    "md_claim_supported": false
+  }
+}

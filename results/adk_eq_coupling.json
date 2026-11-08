@@ -1,0 +1,305 @@
+{
+  "protocol": "Equilibrium AdK (Beckstein 1 \u00b5s, CORE-fitted DCD, dt=240 ps). Same LID/NMP/CORE cuts as DIMS. Question only: does X_i(t) linearly predict X_j(t+\u03c4) on ordinary fluctuations? Gate 0 = last-30% time holdout RMSE < 0.25\u00d7 dest RMS and < 0.50\u00d7 destination shuffle. Primary maps: CORE\u2192LID and CORE\u2192NMP. Reverse maps reported. \u03c4=1 (240 ps) is the pass cell; \u03c4=5 is diagnostic. Halves are same-state replicas, not a transition.",
+  "source": {
+    "citation": "MDAnalysis AdK equilibrium (figshare 5108170); 1ake_007-nowater-core-dt240ps.dcd",
+    "n_frames": 4187,
+    "dt_ps": 240,
+    "n_ca": 214
+  },
+  "blocks": {
+    "first_half": {
+      "tau_1": {
+        "core_to_lid": {
+          "src": "core",
+          "dst": "lid",
+          "gate0": {
+            "n": 2092.0,
+            "n_hold": 628.0,
+            "native_rmse": 8.396942865723497,
+            "shuffle_rmse": 10.379783488099005,
+            "feature_rms": 3.762278298173274,
+            "rmse_over_scale": 2.2318771234441974,
+            "native_over_shuffle": 0.8089709072786592,
+            "gate0_pass": false
+          },
+          "closed_rmse": 8.664660407184817,
+          "shuffled_rmse": 10.236890926548531,
+          "shuffle_distinguishes": false
+        },
+        "core_to_nmp": {
+          "src": "core",
+          "dst": "nmp",
+          "gate0": {
+            "n": 2092.0,
+            "n_hold": 628.0,
+            "native_rmse": 5.761691021669692,
+            "shuffle_rmse": 7.670168981180675,
+            "feature_rms": 2.2071858175457715,
+            "rmse_over_scale": 2.610424086575669,
+            "native_over_shuffle": 0.7511817582906486,
+            "gate0_pass": false
+          },
+          "closed_rmse": 6.480104375448847,
+          "shuffled_rmse": 7.638811080614534,
+          "shuffle_distinguishes": false
+        },
+        "lid_to_core": {
+          "src": "lid",
+          "dst": "core",
+          "gate0": {
+            "n": 2092.0,
+            "n_hold": 628.0,
+            "native_rmse": 10.28623205641412,
+            "shuffle_rmse": 10.262927850674089,
+            "feature_rms": 3.7370667006210674,
+            "rmse_over_scale": 2.752488216146808,
+            "native_over_shuffle": 1.002270717097412,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.325446859037138,
+          "shuffled_rmse": 10.253531244000218,
+          "shuffle_distinguishes": false
+        },
+        "nmp_to_core": {
+          "src": "nmp",
+          "dst": "core",
+          "gate0": {
+            "n": 2092.0,
+            "n_hold": 628.0,
+            "native_rmse": 11.13017569158099,
+            "shuffle_rmse": 10.269215982365111,
+            "feature_rms": 3.7370667006210674,
+            "rmse_over_scale": 2.978318714442868,
+            "native_over_shuffle": 1.083838893903329,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.228243590730646,
+          "shuffled_rmse": 10.256657712442225,
+          "shuffle_distinguishes": false
+        }
+      },
+      "tau_5": {
+        "core_to_lid": {
+          "src": "core",
+          "dst": "lid",
+          "gate0": {
+            "n": 2088.0,
+            "n_hold": 626.0,
+            "native_rmse": 9.0858130961127,
+            "shuffle_rmse": 10.296812481097062,
+            "feature_rms": 3.7639577480300344,
+            "rmse_over_scale": 2.413898801299775,
+            "native_over_shuffle": 0.882390847924295,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.174311031948717,
+          "shuffled_rmse": 10.196560472803318,
+          "shuffle_distinguishes": false
+        },
+        "core_to_nmp": {
+          "src": "core",
+          "dst": "nmp",
+          "gate0": {
+            "n": 2088.0,
+            "n_hold": 626.0,
+            "native_rmse": 6.0086208245188795,
+            "shuffle_rmse": 7.546173945584581,
+            "feature_rms": 2.207568612726237,
+            "rmse_over_scale": 2.7218274394192137,
+            "native_over_shuffle": 0.7962473258431374,
+            "gate0_pass": false
+          },
+          "closed_rmse": 6.66361480781399,
+          "shuffled_rmse": 7.595967789726519,
+          "shuffle_distinguishes": false
+        },
+        "lid_to_core": {
+          "src": "lid",
+          "dst": "core",
+          "gate0": {
+            "n": 2088.0,
+            "n_hold": 626.0,
+            "native_rmse": 10.513946256504676,
+            "shuffle_rmse": 10.293558191337086,
+            "feature_rms": 3.7400504262762535,
+            "rmse_over_scale": 2.8111776736050023,
+            "native_over_shuffle": 1.0214102899183166,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.56273138584615,
+          "shuffled_rmse": 10.232347914031886,
+          "shuffle_distinguishes": false
+        },
+        "nmp_to_core": {
+          "src": "nmp",
+          "dst": "core",
+          "gate0": {
+            "n": 2088.0,
+            "n_hold": 626.0,
+            "native_rmse": 11.191314692965642,
+            "shuffle_rmse": 10.29773980415358,
+            "feature_rms": 3.7400504262762535,
+            "rmse_over_scale": 2.992289786880807,
+            "native_over_shuffle": 1.0867738849307147,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.384400888786132,
+          "shuffled_rmse": 10.239841170223123,
+          "shuffle_distinguishes": false
+        }
+      }
+    },
+    "second_half": {
+      "tau_1": {
+        "core_to_lid": {
+          "src": "core",
+          "dst": "lid",
+          "gate0": {
+            "n": 2093.0,
+            "n_hold": 628.0,
+            "native_rmse": 9.432223297376359,
+            "shuffle_rmse": 10.519209163556258,
+            "feature_rms": 3.990380285370345,
+            "rmse_over_scale": 2.363740451494577,
+            "native_over_shuffle": 0.8966665792761536,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.256715306916817,
+          "shuffled_rmse": 10.399398713404088,
+          "shuffle_distinguishes": false
+        },
+        "core_to_nmp": {
+          "src": "core",
+          "dst": "nmp",
+          "gate0": {
+            "n": 2093.0,
+            "n_hold": 628.0,
+            "native_rmse": 6.0028568340703465,
+            "shuffle_rmse": 5.714904312517961,
+            "feature_rms": 2.572356673638188,
+            "rmse_over_scale": 2.3336020605495054,
+            "native_over_shuffle": 1.0503862367251982,
+            "gate0_pass": false
+          },
+          "closed_rmse": 4.827643655401182,
+          "shuffled_rmse": 5.703282158529662,
+          "shuffle_distinguishes": false
+        },
+        "lid_to_core": {
+          "src": "lid",
+          "dst": "core",
+          "gate0": {
+            "n": 2093.0,
+            "n_hold": 628.0,
+            "native_rmse": 11.32391410873717,
+            "shuffle_rmse": 11.317332360178842,
+            "feature_rms": 4.057130714403615,
+            "rmse_over_scale": 2.7911139437866863,
+            "native_over_shuffle": 1.0005815636007551,
+            "gate0_pass": false
+          },
+          "closed_rmse": 10.579270589328603,
+          "shuffled_rmse": 11.266684542656526,
+          "shuffle_distinguishes": false
+        },
+        "nmp_to_core": {
+          "src": "nmp",
+          "dst": "core",
+          "gate0": {
+            "n": 2093.0,
+            "n_hold": 628.0,
+            "native_rmse": 11.448071799062392,
+            "shuffle_rmse": 11.370448834556198,
+            "feature_rms": 4.057130714403615,
+            "rmse_over_scale": 2.8217162829926767,
+            "native_over_shuffle": 1.0068267282704169,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.999664298218917,
+          "shuffled_rmse": 11.268686217360678,
+          "shuffle_distinguishes": false
+        }
+      },
+      "tau_5": {
+        "core_to_lid": {
+          "src": "core",
+          "dst": "lid",
+          "gate0": {
+            "n": 2089.0,
+            "n_hold": 627.0,
+            "native_rmse": 9.944455165017295,
+            "shuffle_rmse": 10.491025816174059,
+            "feature_rms": 3.9918151465087233,
+            "rmse_over_scale": 2.4912113412152372,
+            "native_over_shuffle": 0.9479011241861485,
+            "gate0_pass": false
+          },
+          "closed_rmse": 9.79790622193941,
+          "shuffled_rmse": 10.393118835633997,
+          "shuffle_distinguishes": false
+        },
+        "core_to_nmp": {
+          "src": "core",
+          "dst": "nmp",
+          "gate0": {
+            "n": 2089.0,
+            "n_hold": 627.0,
+            "native_rmse": 6.130341634558428,
+            "shuffle_rmse": 5.75785950502655,
+            "feature_rms": 2.5733132218031227,
+            "rmse_over_scale": 2.382275730221015,
+            "native_over_shuffle": 1.0646910764680355,
+            "gate0_pass": false
+          },
+          "closed_rmse": 4.951882458830416,
+          "shuffled_rmse": 5.703581074719791,
+          "shuffle_distinguishes": false
+        },
+        "lid_to_core": {
+          "src": "lid",
+          "dst": "core",
+          "gate0": {
+            "n": 2089.0,
+            "n_hold": 627.0,
+            "native_rmse": 11.64527143577825,
+            "shuffle_rmse": 11.38665556282746,
+            "feature_rms": 4.058598310963596,
+            "rmse_over_scale": 2.8692840590606314,
+            "native_over_shuffle": 1.0227121889762838,
+            "gate0_pass": false
+          },
+          "closed_rmse": 10.831207706399205,
+          "shuffled_rmse": 11.266613539053694,
+          "shuffle_distinguishes": false
+        },
+        "nmp_to_core": {
+          "src": "nmp",
+          "dst": "core",
+          "gate0": {
+            "n": 2089.0,
+            "n_hold": 627.0,
+            "native_rmse": 11.553542541701857,
+            "shuffle_rmse": 11.416140451104319,
+            "feature_rms": 4.058598310963596,
+            "rmse_over_scale": 2.8466829325020844,
+            "native_over_shuffle": 1.0120357743657793,
+            "gate0_pass": false
+          },
+          "closed_rmse": 10.185445418381368,
+          "shuffled_rmse": 11.274320766078032,
+          "shuffle_distinguishes": false
+        }
+      }
+    }
+  },
+  "verdict": {
+    "question": "Can X_i(t) linearly predict X_j(t+\u03c4) on equilibrium fluctuations?",
+    "primary_tau_ps": 240,
+    "gate0_pass_both_halves_tau1": {
+      "core_to_lid": false,
+      "core_to_nmp": false
+    },
+    "Aij_works_on_equilibrium": false,
+    "interpretation": "If Aij_works_on_equilibrium is true, DIMS incremental-C failure is largely a transition-data issue. If false, linear A_ij is the wrong coupling object even in one basin."
+  }
+}

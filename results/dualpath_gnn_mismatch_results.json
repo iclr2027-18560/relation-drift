@@ -1,0 +1,64 @@
+{
+  "config": {
+    "epochs": 200,
+    "hidden_dim": 64,
+    "modes": [
+      "gru",
+      "snap",
+      "dual"
+    ],
+    "mismatch": true,
+    "device": "cpu",
+    "note": "Euclidean dual-path GNN: GRU + snapshot + cosine-shift gate; fusion in R^h; no sheaf / SO(d)."
+  },
+  "results": [
+    {
+      "noise": "clean",
+      "drift": "single_jump",
+      "mode": "gru",
+      "mismatch": true,
+      "post_auc": 0.9783374826388889,
+      "mean_gate": 0.0,
+      "per_timestep_auc": {
+        "5": 0.9760514756944445,
+        "6": 0.9779030381944444,
+        "7": 0.9786728298611111,
+        "8": 0.9795316840277778,
+        "9": 0.979541579861111
+      },
+      "v35_post": 0.8445506944444444
+    },
+    {
+      "noise": "clean",
+      "drift": "single_jump",
+      "mode": "snap",
+      "mismatch": true,
+      "post_auc": 0.5,
+      "mean_gate": 1.0,
+      "per_timestep_auc": {
+        "5": 0.5,
+        "6": 0.5,
+        "7": 0.5,
+        "8": 0.5,
+        "9": 0.5
+      },
+      "v35_post": 0.8445506944444444
+    },
+    {
+      "noise": "clean",
+      "drift": "single_jump",
+      "mode": "dual",
+      "mismatch": true,
+      "post_auc": 0.9739721041666667,
+      "mean_gate": 0.009335761854890734,
+      "per_timestep_auc": {
+        "5": 0.9733361111111111,
+        "6": 0.9737783854166666,
+        "7": 0.9742578125,
+        "8": 0.9741546006944444,
+        "9": 0.974331076388889
+      },
+      "v35_post": 0.8445506944444444
+    }
+  ]
+}
