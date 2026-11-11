@@ -96,10 +96,15 @@ class TypedSnapshotEncoder(nn.Module):
 
 class TemporalRGCN(nn.Module):
     def __init__(
-        self, in_dim: int, n_types: int, hidden_dim: int = HIDDEN_DIM
+        self,
+        in_dim: int,
+        n_types: int,
+        hidden_dim: int = HIDDEN_DIM,
+        residual_dim: int = 0,
     ) -> None:
         super().__init__()
         self.hidden_dim = hidden_dim
+        self.residual_dim = int(residual_dim)
         self.encoder = TypedSnapshotEncoder(in_dim, hidden_dim, n_types)
         self.gru = nn.GRU(hidden_dim, hidden_dim, batch_first=True)
         self.gate = nn.Sequential(
@@ -107,8 +112,9 @@ class TemporalRGCN(nn.Module):
             nn.ReLU(),
             nn.Linear(hidden_dim, 1),
         )
+        extra = self.residual_dim
         self.head = nn.Sequential(
-            nn.Linear(hidden_dim * 2 + in_dim * 2, hidden_dim),
+            nn.Linear(hidden_dim * 2 + in_dim * 2 + extra, hidden_dim),
             nn.ReLU(),
             nn.Dropout(0.1),
             nn.Linear(hidden_dim, 1),
@@ -137,6 +143,7 @@ class TemporalRGCN(nn.Module):
         edge_index: Tensor,
         edge_types: Tensor,
         query: Tensor,
+        pair_residual: Optional[Tensor] = None,
     ) -> Tuple[Tensor, Tensor]:
         node_emb, graph_emb = self.encoder(x, edge_index, edge_types)
         gru_in = graph_emb.view(1, 1, -1)
@@ -149,9 +156,28 @@ class TemporalRGCN(nn.Module):
         fused_graph = (1.0 - gate) * slow + gate * graph_emb
         node_h = node_emb + fused_graph.unsqueeze(0)
         src, dst = query[0], query[1]
-        logits = self.head(
-            torch.cat([node_h[src], node_h[dst], x[src], x[dst]], dim=-1)
-        ).squeeze(-1)
+        parts = [node_h[src], node_h[dst], x[src], x[dst]]
+        if self.residual_dim > 0:
+            n_e = int(src.shape[0])
+            if pair_residual is None:
+                residual = torch.zeros(
+                    n_e, self.residual_dim, device=x.device, dtype=x.dtype
+                )
+            else:
+                residual = pair_residual.to(device=x.device, dtype=x.dtype)
+                if residual.dim() == 1:
+                    residual = residual.unsqueeze(-1)
+                residual = residual[:n_e, : self.residual_dim]
+                if residual.size(-1) < self.residual_dim:
+                    pad = torch.zeros(
+                        n_e,
+                        self.residual_dim - residual.size(-1),
+                        device=x.device,
+                        dtype=x.dtype,
+                    )
+                    residual = torch.cat([residual, pad], dim=-1)
+            parts.append(residual)
+        logits = self.head(torch.cat(parts, dim=-1)).squeeze(-1)
         return logits, gate
 
 
@@ -159,13 +185,14 @@ def train_and_evaluate(
     snapshots: List[Dict[str, Tensor]],
     num_epochs: int,
     train_end: Optional[int] = None,
+    residual_dim: int = 0,
 ) -> Tuple[float, Dict[int, float], float]:
     in_dim = int(snapshots[0]["x"].shape[1])
     n_types = int(snapshots[0]["edge_types"].max().item()) + 1
     n_t = len(snapshots)
     if train_end is None:
         train_end = int(n_t * TRAIN_TIMESTEP_RATIO)
-    model = TemporalRGCN(in_dim, n_types).to(DEVICE)
+    model = TemporalRGCN(in_dim, n_types, residual_dim=residual_dim).to(DEVICE)
     optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=1e-5)
     pos_weight = torch.tensor([POS_WEIGHT], device=DEVICE)
 
@@ -181,7 +208,10 @@ def train_and_evaluate(
             y = snapshots[t]["labels"].to(DEVICE)
             if ei.shape[1] == 0:
                 continue
-            logits, _ = model.forward_timestep(x, ei, et, ei)
+            residual = snapshots[t].get("pair_residual")
+            if residual is not None:
+                residual = residual.to(DEVICE)
+            logits, _ = model.forward_timestep(x, ei, et, ei, pair_residual=residual)
             losses.append(
                 F.binary_cross_entropy_with_logits(logits, y, pos_weight=pos_weight)
             )
@@ -210,7 +240,12 @@ def train_and_evaluate(
                 if t >= train_end:
                     per_t[t] = 0.5
                 continue
-            logits, gate = model.forward_timestep(x, ei, et, ei)
+            residual = snapshots[t].get("pair_residual")
+            if residual is not None:
+                residual = residual.to(DEVICE)
+            logits, gate = model.forward_timestep(
+                x, ei, et, ei, pair_residual=residual
+            )
             scores = torch.sigmoid(logits)
             gates.append(float(gate.detach().cpu()))
             per_t[t] = compute_auc(y, scores)
