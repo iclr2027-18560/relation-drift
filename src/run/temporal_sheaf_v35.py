@@ -63,6 +63,9 @@ class SheafConfig:
         use_fast_encoder:      Enable snapshot ρ_fast + geodesic fuse.
         fast_encoder_hidden:   Hidden dim for FastRotationEncoder.
         gate_ema_alpha:        EMA alpha for ChangeDetector embedding.
+        connection_family:     ``orthogonal`` (Cayley / SO(d)) or
+                               ``unconstrained`` (GL analog).
+        static_connection:     If True, one learned map used at every t.
     """
 
     node_feat_dim: int = 16
@@ -82,6 +85,8 @@ class SheafConfig:
     fast_encoder_hidden: int = DEFAULT_FAST_ENCODER_HIDDEN
     gate_ema_alpha: float = DEFAULT_GATE_EMA_ALPHA
     pair_residual_dim: int = 0
+    connection_family: str = "orthogonal"
+    static_connection: bool = False
 
 
 @dataclass
@@ -159,6 +164,7 @@ class CoboundaryOperator(nn.Module):
         """
         super().__init__()
         self.stalk_dim = stalk_dim
+        self.family = "orthogonal"
 
     def forward(
         self,
@@ -181,14 +187,15 @@ class CoboundaryOperator(nn.Module):
         x_dst = x[dst]
 
         rho_mat = rho[0]
-        # Relative transport: source uses ρ, target uses ρᵀ (not ρ, ρ).
         mapped_src = torch.matmul(x_src, rho_mat)
-        mapped_dst = torch.matmul(x_dst, rho_mat.T)
-
-        delta = mapped_src - mapped_dst
-        norm = delta.norm(dim=-1).mean()
-
-        return norm
+        if self.family == "unconstrained":
+            # GL energy: s(u) ρ − s(v). Do not use ρᵀ; that assumes SO(d).
+            delta = mapped_src - x_dst
+        else:
+            # Relative transport: source uses ρ, target uses ρᵀ (not ρ, ρ).
+            mapped_dst = torch.matmul(x_dst, rho_mat.T)
+            delta = mapped_src - mapped_dst
+        return delta.norm(dim=-1).mean()
 
 
 class JerkDetector(nn.Module):
@@ -408,9 +415,16 @@ class RhoEvolver(nn.Module):
             batch_first=True,
         )
 
-        # Cayley parametrization: skew-symmetric parameters
+        self.family = getattr(config, "connection_family", "orthogonal")
         n_skew_params = d * (d - 1) // 2
-        self.skew_proj = nn.Linear(config.hidden_dim, n_skew_params)
+        if self.family == "unconstrained":
+            self.dense_proj = nn.Linear(config.hidden_dim, d * d)
+            nn.init.zeros_(self.dense_proj.weight)
+            nn.init.zeros_(self.dense_proj.bias)
+            self.skew_proj = None
+        else:
+            self.dense_proj = None
+            self.skew_proj = nn.Linear(config.hidden_dim, n_skew_params)
 
         self.h_state: Optional[Tensor] = None
 
@@ -449,9 +463,11 @@ class RhoEvolver(nn.Module):
 
         hidden = gru_out.squeeze(0).squeeze(0)  # [hidden_dim]
 
-        # Cayley parametrization for orthogonal delta
-        skew_params = self.skew_proj(hidden)
-        delta_rho = self._cayley_map(skew_params)
+        if self.family == "unconstrained":
+            delta_rho = self.dense_proj(hidden).view(d, d)
+        else:
+            skew_params = self.skew_proj(hidden)
+            delta_rho = self._cayley_map(skew_params)
 
         return delta_rho, hidden
 
@@ -670,6 +686,7 @@ class SheafDiffusionLayer(nn.Module):
         self,
         stalk_dim: int,
         dropout: float = DEFAULT_DROPOUT,
+        family: str = "orthogonal",
     ) -> None:
         """Initialize diffusion layer.
 
@@ -678,6 +695,7 @@ class SheafDiffusionLayer(nn.Module):
             dropout: Dropout probability.
         """
         super().__init__()
+        self.family = family
         self.linear = nn.Linear(stalk_dim, stalk_dim)
         self.norm = nn.LayerNorm(stalk_dim)
         self.dropout = nn.Dropout(dropout)
@@ -704,7 +722,10 @@ class SheafDiffusionLayer(nn.Module):
         # Message passing via restriction maps
         rho_mat = rho[0]
         messages_src = torch.matmul(x[src], rho_mat)
-        messages_dst = torch.matmul(x[dst], rho_mat.T)
+        if self.family == "unconstrained":
+            messages_dst = x[dst]
+        else:
+            messages_dst = torch.matmul(x[dst], rho_mat.T)
 
         # Aggregate messages at each node
         agg = torch.zeros_like(x)
@@ -773,9 +794,20 @@ class TemporalSheafV35(nn.Module):
 
         # Coboundary operator
         self.coboundary = CoboundaryOperator(d)
+        self.coboundary.family = getattr(config, "connection_family", "orthogonal")
 
-        # Restriction map evolver (GRU + Cayley)
-        self.rho_evolver = RhoEvolver(config)
+        self.static_skew: Optional[nn.Parameter] = None
+        self.static_matrix: Optional[nn.Parameter] = None
+        self.rho_evolver: Optional[RhoEvolver] = None
+        if config.static_connection:
+            if config.connection_family == "unconstrained":
+                self.static_matrix = nn.Parameter(torch.eye(d))
+            else:
+                self.static_skew = nn.Parameter(
+                    torch.zeros(d * (d - 1) // 2)
+                )
+        else:
+            self.rho_evolver = RhoEvolver(config)
 
         # Adaptive gate (bias=+2.0, floor=0.1)
         gate_input_dim = config.hidden_dim + 1  # hidden + cb_norm
@@ -811,9 +843,10 @@ class TemporalSheafV35(nn.Module):
             )
 
         # Sheaf diffusion layers
+        family = getattr(config, "connection_family", "orthogonal")
         self.diffusion_layers = nn.ModuleList(
             [
-                SheafDiffusionLayer(d, config.dropout)
+                SheafDiffusionLayer(d, config.dropout, family=family)
                 for _ in range(config.num_diffusion_layers)
             ]
         )
@@ -852,7 +885,64 @@ class TemporalSheafV35(nn.Module):
             .unsqueeze(0)
             .repeat(self.config.num_edge_types, 1, 1)
         )
-        self.rho_evolver.reset()
+        if self.rho_evolver is not None:
+            self.rho_evolver.reset()
+
+    def _materialize_static_rho(self, device: torch.device, dtype: torch.dtype) -> Tensor:
+        """One learned map, identical at every snapshot."""
+        d = self.config.stalk_dim
+        if self.static_matrix is not None:
+            return self.static_matrix.to(device=device, dtype=dtype).unsqueeze(0)
+        skew = self.static_skew.to(device=device, dtype=dtype)
+        A = torch.zeros(d, d, device=device, dtype=dtype)
+        idx = 0
+        for i in range(d):
+            for j in range(i + 1, d):
+                A[i, j] = skew[idx]
+                A[j, i] = -skew[idx]
+                idx += 1
+        eye = torch.eye(d, device=device, dtype=dtype)
+        rho = torch.linalg.solve(eye + A, eye - A)
+        return rho.unsqueeze(0)
+
+    def _score_after_rho(
+        self,
+        x_stalk: Tensor,
+        edge_index: Tensor,
+        rho_for_diff: Tensor,
+        pair_residual: Optional[Tensor],
+        diagnostics: Dict[str, float],
+    ) -> Tuple[Tensor, Dict[str, float]]:
+        """Diffusion + edge head given a connection for this snapshot."""
+        device = x_stalk.device
+        x_out = x_stalk
+        for layer in self.diffusion_layers:
+            x_out = layer(x_out, edge_index, rho_for_diff)
+        src, dst = edge_index[0], edge_index[1]
+        parts = [x_out[src], x_out[dst]]
+        extra = max(int(self.config.pair_residual_dim), 0)
+        if extra > 0:
+            n_e = edge_index.size(1)
+            if pair_residual is None:
+                residual = torch.zeros(n_e, extra, device=device, dtype=x_out.dtype)
+            else:
+                residual = pair_residual.to(device=device, dtype=x_out.dtype)
+                if residual.dim() == 1:
+                    residual = residual.unsqueeze(-1)
+                if residual.size(0) != n_e:
+                    residual = residual[:n_e]
+                if residual.size(-1) < extra:
+                    pad = torch.zeros(
+                        n_e, extra - residual.size(-1),
+                        device=device, dtype=x_out.dtype,
+                    )
+                    residual = torch.cat([residual, pad], dim=-1)
+                residual = residual[:, :extra]
+            parts.append(residual)
+            diagnostics["pair_residual_mean"] = float(residual.mean().item())
+        edge_repr = torch.cat(parts, dim=-1)
+        scores = self.anomaly_head(edge_repr).squeeze(-1)
+        return scores, diagnostics
         self.jerk_detector.reset()
         self.recovery.reset()
         if self.change_detector is not None:
@@ -886,6 +976,12 @@ class TemporalSheafV35(nn.Module):
             rho = carried
         self.current_rho = rho.contiguous()
 
+        if self.rho_evolver is None:
+            self._prev_cb_norm = 0.0
+            self._prev_delta = 0.0
+            self.jerk_detector.reset()
+            self.recovery.reset()
+            return
         self.rho_evolver.reset()
         d = self.config.stalk_dim
         flat_rho = self.current_rho[0].reshape(1, -1)
@@ -983,6 +1079,8 @@ class TemporalSheafV35(nn.Module):
         else:
             self.current_rho.copy_(rho)
 
+        if self.rho_evolver is None:
+            return
         # RhoEvolver.forward uses current_rho[0] only → flatten one map
         d = self.config.stalk_dim
         flat_rho = self.current_rho[0].reshape(1, -1)  # [1, d*d]
@@ -1045,6 +1143,28 @@ class TemporalSheafV35(nn.Module):
         # Project input to stalk space
         x_stalk = self.input_proj(x)
 
+        if self.config.static_connection:
+            rho_for_diff = self._materialize_static_rho(
+                device=device, dtype=x.dtype
+            )
+            if rho_for_diff.shape[0] == 1 and e_types > 1:
+                rho_for_diff = rho_for_diff.expand(e_types, -1, -1).contiguous()
+            cb_norm = self.coboundary(x_stalk, edge_index, rho_for_diff)
+            diagnostics["coboundary_norm"] = float(cb_norm.detach().item())
+            diagnostics["fusion_gate"] = 0.0
+            diagnostics["hard_handoff"] = 0.0
+            diagnostics["gate_effective"] = 0.0
+            diagnostics["jump_detected"] = 0.0
+            diagnostics["recovery_strength"] = 0.0
+            self._last_fusion_gate = None
+            self._last_rho_fast = None
+            self._last_fast_cb = None
+            self._last_rho_live = rho_for_diff
+            self.current_rho = rho_for_diff.detach().contiguous()
+            return self._score_after_rho(
+                x_stalk, edge_index, rho_for_diff, pair_residual, diagnostics
+            )
+
         # Carried rho must be a leaf for truncated BPTT
         rho_prev = self.current_rho.detach()
 
@@ -1076,7 +1196,7 @@ class TemporalSheafV35(nn.Module):
         recovery_strength = self.recovery.step()
         diagnostics["recovery_strength"] = float(recovery_strength.item())
 
-        # Evolve restriction maps via GRU + Cayley
+        # Evolve restriction maps via GRU + Cayley (or GL increment)
         delta_rho, gru_hidden = self.rho_evolver(rho_prev, cb_stats)
 
         # Compute adaptive gate value
@@ -1098,13 +1218,21 @@ class TemporalSheafV35(nn.Module):
 
         diagnostics["gate_effective"] = float(gate_val.detach().item())
 
-        # Lie-group slow update: ρ ← ρ · Cayley(g · log(Δρ))
-        # (stays on SO(d); replaces Euclidean residual leak)
-        delta_batch = delta_rho.unsqueeze(0)
-        delta_lie = self._cayley_log(delta_batch)
-        slow_step = self._cayley_exp(gate_val * delta_lie)  # [1, d, d]
-        slow_step = slow_step.expand(e_types, -1, -1)
-        rho_slow = torch.bmm(rho_prev, slow_step)
+        family = getattr(self.config, "connection_family", "orthogonal")
+        if family == "unconstrained":
+            eye = torch.eye(
+                self.config.stalk_dim, device=device, dtype=x.dtype
+            )
+            slow_step = eye + gate_val * delta_rho
+            slow_step = slow_step.unsqueeze(0).expand(e_types, -1, -1)
+            rho_slow = torch.bmm(rho_prev, slow_step)
+        else:
+            # Lie-group slow update: ρ ← ρ · Cayley(g · log(Δρ))
+            delta_batch = delta_rho.unsqueeze(0)
+            delta_lie = self._cayley_log(delta_batch)
+            slow_step = self._cayley_exp(gate_val * delta_lie)
+            slow_step = slow_step.expand(e_types, -1, -1)
+            rho_slow = torch.bmm(rho_prev, slow_step)
 
         # Snapshot ρ_fast + change-detector fusion (rescue at jumps)
         fusion_gate = torch.zeros((), device=device, dtype=x.dtype)
@@ -1164,38 +1292,9 @@ class TemporalSheafV35(nn.Module):
         else:
             self.current_rho = rho_for_diff.detach().contiguous()
 
-        # Sheaf diffusion stack (uses this step's differentiable rho)
-        x_out = x_stalk
-        for layer in self.diffusion_layers:
-            x_out = layer(x_out, edge_index, rho_for_diff)
-
-        # Edge-level anomaly scoring
-        src, dst = edge_index[0], edge_index[1]
-        parts = [x_out[src], x_out[dst]]
-        extra = max(int(self.config.pair_residual_dim), 0)
-        if extra > 0:
-            n_e = edge_index.size(1)
-            if pair_residual is None:
-                residual = torch.zeros(n_e, extra, device=device, dtype=x_out.dtype)
-            else:
-                residual = pair_residual.to(device=device, dtype=x_out.dtype)
-                if residual.dim() == 1:
-                    residual = residual.unsqueeze(-1)
-                if residual.size(0) != n_e:
-                    residual = residual[:n_e]
-                if residual.size(-1) < extra:
-                    pad = torch.zeros(
-                        n_e, extra - residual.size(-1),
-                        device=device, dtype=x_out.dtype,
-                    )
-                    residual = torch.cat([residual, pad], dim=-1)
-                residual = residual[:, :extra]
-            parts.append(residual)
-            diagnostics["pair_residual_mean"] = float(residual.mean().item())
-        edge_repr = torch.cat(parts, dim=-1)
-        scores = self.anomaly_head(edge_repr).squeeze(-1)
-
-        return scores, diagnostics
+        return self._score_after_rho(
+            x_stalk, edge_index, rho_for_diff, pair_residual, diagnostics
+        )
 
     def score_edges(
         self,
